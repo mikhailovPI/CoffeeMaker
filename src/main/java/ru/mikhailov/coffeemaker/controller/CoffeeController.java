@@ -3,6 +3,8 @@ package ru.mikhailov.coffeemaker.controller;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+import ru.mikhailov.coffeemaker.dto.CoffeeDto;
+import ru.mikhailov.coffeemaker.dto.CoffeeUpdateDto;
 import ru.mikhailov.coffeemaker.model.Coffee;
 import ru.mikhailov.coffeemaker.service.CoffeeService;
 
@@ -18,32 +20,32 @@ public class CoffeeController {
     private final CoffeeService coffeeService;
 
     @GetMapping
-    public List<Coffee> getAllCoffee(
+    public List<CoffeeDto> getAllCoffee(
             @RequestParam(name = "from", defaultValue = "0") int from,
             @RequestParam(name = "size", defaultValue = "5") int size) {
         return coffeeService.getAllCoffee(from, size);
     }
 
     @GetMapping(path = "/{id}")
-    public Coffee getCoffeeById(@PathVariable Long id) {
+    public CoffeeDto getCoffeeById(@PathVariable Long id) {
         return coffeeService.getCoffeeById(id);
     }
 
     @GetMapping(path = "/name")
-    public List<Coffee> searchCoffeeByName(
+    public List<CoffeeDto> searchCoffeeByName(
             @RequestParam(name = "nameCoffee", required = false) String nameCoffee) {
         return coffeeService.searchCoffeeByName(nameCoffee);
     }
 
     @PostMapping
-    public Coffee createCoffee(@RequestBody Coffee coffee) {
+    public CoffeeDto createCoffee(@RequestBody CoffeeDto coffee) {
         return coffeeService.createCoffee(coffee);
     }
 
     @PatchMapping(path = "/{id}")
-    public Coffee patchCoffee(
+    public CoffeeDto patchCoffee(
             @PathVariable Long id,
-            @RequestBody Coffee coffee) {
+            @RequestBody CoffeeUpdateDto coffee) {
         return coffeeService.patchCoffee(id, coffee);
     }
 

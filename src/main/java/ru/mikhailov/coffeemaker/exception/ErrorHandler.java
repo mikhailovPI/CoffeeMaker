@@ -24,4 +24,10 @@ public class ErrorHandler {
         return new ErrorResponse(e.getMessage());
     }
 
+    @ExceptionHandler
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorResponse handelValidationException(final ValidationException e) {
+        log.info("400 {}", e.getMessage(), e);
+        return new ErrorResponse(e.getMessage());
+    }
 }

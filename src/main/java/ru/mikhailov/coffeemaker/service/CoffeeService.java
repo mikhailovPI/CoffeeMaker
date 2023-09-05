@@ -1,21 +1,23 @@
 package ru.mikhailov.coffeemaker.service;
 
 import org.springframework.stereotype.Service;
+import ru.mikhailov.coffeemaker.dto.CoffeeDto;
+import ru.mikhailov.coffeemaker.dto.CoffeeUpdateDto;
 import ru.mikhailov.coffeemaker.model.Coffee;
 
 import java.util.List;
 
 @Service
 public interface CoffeeService {
-    List<Coffee> getAllCoffee(int from, int size);
+    List<CoffeeDto> getAllCoffee(int from, int size);
 
-    Coffee getCoffeeById(Long id);
+    CoffeeDto getCoffeeById(Long id);
 
-    List<Coffee> searchCoffeeByName(String nameCoffee);
+    List<CoffeeDto> searchCoffeeByName(String nameCoffee);
 
-    Coffee createCoffee(Coffee coffee);
+    CoffeeDto createCoffee(CoffeeDto coffee);
 
-    Coffee patchCoffee(Long id, Coffee coffee);
+    CoffeeDto patchCoffee(Long id, CoffeeUpdateDto coffee);
 
     void deleteCoffeeById(Long id);
 }
