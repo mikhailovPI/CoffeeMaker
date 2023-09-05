@@ -1,12 +1,11 @@
-package ru.mikhailov.coffeemaker.controller;
+package ru.mikhailov.coffeemaker.coffee.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
-import ru.mikhailov.coffeemaker.dto.CoffeeDto;
-import ru.mikhailov.coffeemaker.dto.CoffeeUpdateDto;
-import ru.mikhailov.coffeemaker.model.Coffee;
-import ru.mikhailov.coffeemaker.service.CoffeeService;
+import ru.mikhailov.coffeemaker.coffee.dto.CoffeeDto;
+import ru.mikhailov.coffeemaker.coffee.dto.CoffeeUpdateDto;
+import ru.mikhailov.coffeemaker.coffee.service.CoffeeService;
 
 import java.util.List;
 
@@ -33,8 +32,10 @@ public class CoffeeController {
 
     @GetMapping(path = "/name")
     public List<CoffeeDto> searchCoffeeByName(
-            @RequestParam(name = "nameCoffee", required = false) String nameCoffee) {
-        return coffeeService.searchCoffeeByName(nameCoffee);
+            @RequestParam(name = "nameCoffee", required = false) String nameCoffee,
+            @RequestParam(name = "from", defaultValue = "0") int from,
+            @RequestParam(name = "size", defaultValue = "5") int size) {
+        return coffeeService.searchCoffeeByName(nameCoffee, from, size);
     }
 
     @PostMapping

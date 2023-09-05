@@ -1,9 +1,8 @@
-package ru.mikhailov.coffeemaker.service;
+package ru.mikhailov.coffeemaker.coffee.service;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import ru.mikhailov.coffeemaker.dto.CoffeeDto;
-import ru.mikhailov.coffeemaker.dto.CoffeeUpdateDto;
+import ru.mikhailov.coffeemaker.coffee.dto.CoffeeDto;
+import ru.mikhailov.coffeemaker.coffee.dto.CoffeeUpdateDto;
 
 import java.util.List;
 
@@ -13,7 +12,7 @@ public interface CoffeeService {
 
     CoffeeDto getCoffeeById(Long id);
 
-    List<CoffeeDto> searchCoffeeByName(String nameCoffee);
+    List<CoffeeDto> searchCoffeeByName(String nameCoffee, int from, int size);
 
     CoffeeDto createCoffee(CoffeeDto coffee);
 

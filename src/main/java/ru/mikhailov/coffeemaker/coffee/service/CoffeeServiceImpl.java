@@ -1,24 +1,24 @@
-package ru.mikhailov.coffeemaker.service;
+package ru.mikhailov.coffeemaker.coffee.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.mikhailov.coffeemaker.coffee.dto.CoffeeDto;
+import ru.mikhailov.coffeemaker.coffee.dto.CoffeeUpdateDto;
+import ru.mikhailov.coffeemaker.coffee.mapper.CoffeeMapper;
+import ru.mikhailov.coffeemaker.coffee.model.Coffee;
+import ru.mikhailov.coffeemaker.coffee.repository.CoffeeRepository;
 import ru.mikhailov.coffeemaker.config.PageRequestOverride;
-import ru.mikhailov.coffeemaker.dto.CoffeeDto;
-import ru.mikhailov.coffeemaker.dto.CoffeeUpdateDto;
 import ru.mikhailov.coffeemaker.exception.NotFoundException;
 import ru.mikhailov.coffeemaker.exception.ValidationException;
-import ru.mikhailov.coffeemaker.mapper.CoffeeMapper;
-import ru.mikhailov.coffeemaker.model.Coffee;
-import ru.mikhailov.coffeemaker.repository.CoffeeRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static ru.mikhailov.coffeemaker.coffee.mapper.CoffeeMapper.toCoffee;
+import static ru.mikhailov.coffeemaker.coffee.mapper.CoffeeMapper.toCoffeeDto;
 import static ru.mikhailov.coffeemaker.config.Validation.validationBodyCoffee;
-import static ru.mikhailov.coffeemaker.mapper.CoffeeMapper.toCoffee;
-import static ru.mikhailov.coffeemaker.mapper.CoffeeMapper.toCoffeeDto;
 
 @Service
 @RequiredArgsConstructor
@@ -45,11 +45,21 @@ public class CoffeeServiceImpl implements CoffeeService {
     }
 
     @Override
-    public List<CoffeeDto> searchCoffeeByName(String nameCoffee) {
-        return coffeeRepository.findFirstCoffeeByNameCoffee(nameCoffee)
-                .stream()
-                .map(CoffeeMapper::toCoffeeDto)
-                .collect(Collectors.toList());
+    public List<CoffeeDto> searchCoffeeByName(String nameCoffee, int from, int size) {
+        PageRequestOverride pageRequest = PageRequestOverride.of(from, size);
+        if (nameCoffee == null) {
+            return coffeeRepository.findAll(pageRequest)
+                    .stream()
+                    .sorted((o1, o2) -> o1.getName().compareTo(o2.getName()))
+                    .map(CoffeeMapper::toCoffeeDto)
+                    .collect(Collectors.toList());
+        } else {
+            return coffeeRepository.findCoffeeByName(nameCoffee, pageRequest)
+                    .stream()
+                    .sorted((o1, o2) -> o1.getName().compareTo(o2.getName()))
+                    .map(CoffeeMapper::toCoffeeDto)
+                    .collect(Collectors.toList());
+        }
     }
 
     @Override

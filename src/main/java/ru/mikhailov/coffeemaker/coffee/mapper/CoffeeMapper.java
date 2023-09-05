@@ -1,8 +1,8 @@
-package ru.mikhailov.coffeemaker.mapper;
+package ru.mikhailov.coffeemaker.coffee.mapper;
 
-import ru.mikhailov.coffeemaker.dto.CoffeeDto;
-import ru.mikhailov.coffeemaker.dto.CoffeeUpdateDto;
-import ru.mikhailov.coffeemaker.model.Coffee;
+import ru.mikhailov.coffeemaker.coffee.dto.CoffeeDto;
+import ru.mikhailov.coffeemaker.coffee.dto.CoffeeUpdateDto;
+import ru.mikhailov.coffeemaker.coffee.model.Coffee;
 
 public class CoffeeMapper {
 
@@ -20,12 +20,12 @@ public class CoffeeMapper {
         );
     }
 
-    public static Coffee toCoffee(CoffeeUpdateDto coffeeUpdateDto) {
+/*    public static Coffee toCoffee(Long id, CoffeeUpdateDto coffeeUpdateDto) {
         return new Coffee(
-                null,
+                id,
                 coffeeUpdateDto.getName()
         );
-    }
+    }*/
 
     public static CoffeeUpdateDto toCoffeeUpdateDto(Coffee coffee) {
         return new CoffeeUpdateDto(

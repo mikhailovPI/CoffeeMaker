@@ -1,4 +1,4 @@
-package ru.mikhailov.coffeemaker.model;
+package ru.mikhailov.coffeemaker.coffee.model;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
