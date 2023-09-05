@@ -82,12 +82,12 @@ public class CoffeeServiceImpl implements CoffeeService {
         Coffee coffeeDataBase = coffeeRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException(
                         String.format("Данный кофе %s не существует!", id)));
-        if (!coffeeDataBase.getName().equals(coffee.getName())) {
+        if (!coffeeDataBase.getName().equalsIgnoreCase(coffee.getName())) {
             coffeeDataBase.setName(coffee.getName());
             return toCoffeeDto(coffeeRepository.save(coffeeDataBase));
         } else {
             throw new ValidationException(String.format("Название кофе %s уже существует. Напишите новое название!:)",
-                    coffee.getName()));
+                    coffeeDataBase.getName()));
         }
     }
 

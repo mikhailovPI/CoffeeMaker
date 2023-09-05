@@ -20,12 +20,12 @@ public class CoffeeMapper {
         );
     }
 
-/*    public static Coffee toCoffee(Long id, CoffeeUpdateDto coffeeUpdateDto) {
+    public static Coffee toCoffee(Long id, CoffeeUpdateDto coffeeUpdateDto) {
         return new Coffee(
                 id,
                 coffeeUpdateDto.getName()
         );
-    }*/
+    }
 
     public static CoffeeUpdateDto toCoffeeUpdateDto(Coffee coffee) {
         return new CoffeeUpdateDto(
