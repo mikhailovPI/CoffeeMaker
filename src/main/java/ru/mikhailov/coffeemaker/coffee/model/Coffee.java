@@ -1,9 +1,6 @@
 package ru.mikhailov.coffeemaker.coffee.model;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
@@ -13,10 +10,10 @@ import javax.persistence.*;
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-@Table (name = Coffee.TABLE_COFFEE, schema = Coffee.SCHEMA_TABLE)
+@Table(name = Coffee.TABLE_COFFEE, schema = Coffee.SCHEMA_TABLE)
 public class Coffee {
 
-    public static final String TABLE_COFFEE= "coffee";
+    public static final String TABLE_COFFEE = "coffee";
     public static final String SCHEMA_TABLE = "public";
     public static final String COFFEE_ID = "coffee_id";
     public static final String ROLE_NAME = "coffee_name";
@@ -27,5 +24,6 @@ public class Coffee {
     Long id;
 
     @Column(name = ROLE_NAME)
+    @NonNull
     String name;
 }

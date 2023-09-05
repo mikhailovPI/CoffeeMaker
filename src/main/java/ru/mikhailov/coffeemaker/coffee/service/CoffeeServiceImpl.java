@@ -41,7 +41,7 @@ public class CoffeeServiceImpl implements CoffeeService {
     public CoffeeDto getCoffeeById(Long id) {
         return toCoffeeDto(coffeeRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException(
-                        String.format("Данный кофе %s не существует!", id))));
+                        String.format("Данный кофе c id %s не существует!", id))));
     }
 
     @Override
@@ -68,7 +68,7 @@ public class CoffeeServiceImpl implements CoffeeService {
         validationBodyCoffee(toCoffee(coffee));
         if (coffeeRepository.findAll()
                 .stream()
-                .noneMatch(c -> c.getName().equals(coffee.getName()))) {
+                .noneMatch(c -> c.getName().equalsIgnoreCase(coffee.getName()))) {
             return toCoffeeDto(coffeeRepository.save(toCoffee(coffee)));
         } else {
             throw new ValidationException(String.format("Название кофе %s уже существует. Напишите новое название!:)",
@@ -81,7 +81,7 @@ public class CoffeeServiceImpl implements CoffeeService {
     public CoffeeDto patchCoffee(Long id, CoffeeUpdateDto coffee) {
         Coffee coffeeDataBase = coffeeRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException(
-                        String.format("Данный кофе %s не существует!", id)));
+                        String.format("Данный кофе c id %s не существует!", id)));
         if (!coffeeDataBase.getName().equalsIgnoreCase(coffee.getName())) {
             coffeeDataBase.setName(coffee.getName());
             return toCoffeeDto(coffeeRepository.save(coffeeDataBase));
@@ -98,7 +98,7 @@ public class CoffeeServiceImpl implements CoffeeService {
             coffeeRepository.deleteById(id);
         } else {
             throw new NotFoundException(
-                    String.format("Данный кофе %s не существует!", id));
+                    String.format("Данный кофе c id %s не существует!", id));
         }
     }
 }

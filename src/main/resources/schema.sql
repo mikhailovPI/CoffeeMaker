@@ -1,4 +1,4 @@
---DROP TABLE coffee;
+DROP TABLE coffee;
 
 CREATE TABLE IF NOT EXISTS coffee
 (

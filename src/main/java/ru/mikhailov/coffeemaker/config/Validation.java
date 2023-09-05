@@ -6,8 +6,8 @@ import ru.mikhailov.coffeemaker.coffee.model.Coffee;
 public class Validation {
 
     public static void validationBodyCoffee(Coffee coffee) {
-        if (coffee.getName() == null) {
-            throw new ValidationException("E-mail не должен быть пустым.");
+        if (coffee.getName().isBlank()) {
+            throw new ValidationException("Имя не должно быть пустым.");
         }
     }
 }
