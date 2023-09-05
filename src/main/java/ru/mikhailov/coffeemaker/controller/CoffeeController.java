@@ -18,23 +18,25 @@ public class CoffeeController {
     private final CoffeeService coffeeService;
 
     @GetMapping
-    public List<Coffee> getAllCoffee () {
-        return coffeeService.getAllCoffee();
+    public List<Coffee> getAllCoffee(
+            @RequestParam(name = "from", defaultValue = "0") int from,
+            @RequestParam(name = "size", defaultValue = "5") int size) {
+        return coffeeService.getAllCoffee(from, size);
     }
 
     @GetMapping(path = "/{id}")
-    public Coffee getCoffeeById (@PathVariable Long id) {
+    public Coffee getCoffeeById(@PathVariable Long id) {
         return coffeeService.getCoffeeById(id);
     }
 
-    @GetMapping(path = "/name" )
-    public List<Coffee> searchCoffeeByName (
+    @GetMapping(path = "/name")
+    public List<Coffee> searchCoffeeByName(
             @RequestParam(name = "nameCoffee", required = false) String nameCoffee) {
         return coffeeService.searchCoffeeByName(nameCoffee);
     }
 
     @PostMapping
-    public Coffee createCoffee (@RequestBody Coffee coffee) {
+    public Coffee createCoffee(@RequestBody Coffee coffee) {
         return coffeeService.createCoffee(coffee);
     }
 
@@ -46,7 +48,7 @@ public class CoffeeController {
     }
 
     @DeleteMapping(path = "/{id}")
-    public void deleteCoffeeById (@PathVariable Long id) {
+    public void deleteCoffeeById(@PathVariable Long id) {
         coffeeService.deleteCoffeeById(id);
     }
 }

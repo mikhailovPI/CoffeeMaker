@@ -7,7 +7,7 @@ import java.util.List;
 
 @Service
 public interface CoffeeService {
-    List<Coffee> getAllCoffee();
+    List<Coffee> getAllCoffee(int from, int size);
 
     Coffee getCoffeeById(Long id);
 
