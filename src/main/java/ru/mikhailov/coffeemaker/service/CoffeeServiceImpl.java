@@ -2,6 +2,7 @@ package ru.mikhailov.coffeemaker.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.mikhailov.coffeemaker.config.PageRequestOverride;
 import ru.mikhailov.coffeemaker.dto.CoffeeDto;
@@ -19,6 +20,7 @@ import static ru.mikhailov.coffeemaker.config.Validation.validationBodyCoffee;
 import static ru.mikhailov.coffeemaker.mapper.CoffeeMapper.toCoffee;
 import static ru.mikhailov.coffeemaker.mapper.CoffeeMapper.toCoffeeDto;
 
+@Service
 @RequiredArgsConstructor
 @Slf4j
 @Transactional(readOnly = true)

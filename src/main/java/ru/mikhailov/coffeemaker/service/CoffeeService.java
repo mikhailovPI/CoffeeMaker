@@ -1,9 +1,9 @@
 package ru.mikhailov.coffeemaker.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.mikhailov.coffeemaker.dto.CoffeeDto;
 import ru.mikhailov.coffeemaker.dto.CoffeeUpdateDto;
-import ru.mikhailov.coffeemaker.model.Coffee;
 
 import java.util.List;
 

@@ -13,7 +13,7 @@ public class ErrorHandler {
     @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorResponse handleValidationException(final ValidationException e) {
-        log.info("500 {}", e.getMessage(), e);
+        log.info("400 {}", e.getMessage(), e);
         return new ErrorResponse(e.getMessage());
     }
 
@@ -21,13 +21,6 @@ public class ErrorHandler {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ErrorResponse handelNotFoundException(final NotFoundException e) {
         log.info("404 {}", e.getMessage(), e);
-        return new ErrorResponse(e.getMessage());
-    }
-
-    @ExceptionHandler
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ErrorResponse handelValidationException(final ValidationException e) {
-        log.info("400 {}", e.getMessage(), e);
         return new ErrorResponse(e.getMessage());
     }
 }
