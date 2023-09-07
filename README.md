@@ -26,14 +26,16 @@
 - Произвести запуск приложения (class ClaimRegistrarApplication);
 - Запустить Postman на [localhost:8080](http://localhost:8080);
 - Запустить коллекцию 
-[тестов]()
+[тестов](https://github.com/mikhailovPI/CoffeeMaker/blob/main/info/CoffeeMaker.postman_collection.json)
 в Postman;
+- Для просмотра спецификации Swagger после запуска приложения необходимо перейти по 
+[ссылке](http://localhost:8080/swagger-ui/index.html#/)
 
 ***Схема базы данных:***
 >![db.png](info/db.PNG)
 >
 ***Данные для тестирования в Postman:***
-[tests]()
+[tests](https://github.com/mikhailovPI/CoffeeMaker/blob/main/info/CoffeeMaker.postman_collection.json)
 
 
 
