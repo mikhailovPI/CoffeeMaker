@@ -40,4 +40,9 @@ public class CoffeeMake {
     @OneToOne(optional = false)
     @JoinColumn(name = COFFEE_ID)
     Coffee coffee;
+
+    public CoffeeMake(CoffeeMachine coffeeMachine, Coffee coffee) {
+        this.coffeeMachine = coffeeMachine;
+        this.coffee = coffee;
+    }
 }

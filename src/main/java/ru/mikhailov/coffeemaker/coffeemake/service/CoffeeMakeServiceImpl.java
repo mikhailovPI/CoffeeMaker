@@ -33,7 +33,6 @@ public class CoffeeMakeServiceImpl implements CoffeeMakeService {
                         String.format("Кофе  c id %s не существует!", coffeeId)));
         if (coffeeMachine.getPower()) {
             CoffeeMake coffeeMake = new CoffeeMake(
-                    1L,
                     coffeeMachine,
                     coffee);
             coffeeMakeRepository.save(coffeeMake);
