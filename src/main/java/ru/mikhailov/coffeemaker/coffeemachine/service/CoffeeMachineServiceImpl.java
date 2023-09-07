@@ -12,6 +12,7 @@ import ru.mikhailov.coffeemaker.exception.NotFoundException;
 
 import static ru.mikhailov.coffeemaker.coffeemachine.mapper.CoffeeMachineMapper.toCoffeeMachine;
 import static ru.mikhailov.coffeemaker.coffeemachine.mapper.CoffeeMachineMapper.toCoffeeMachineDto;
+import static ru.mikhailov.coffeemaker.config.Validation.validationBodyCoffeeMachine;
 
 @Service
 @RequiredArgsConstructor
@@ -20,7 +21,6 @@ import static ru.mikhailov.coffeemaker.coffeemachine.mapper.CoffeeMachineMapper.
 public class CoffeeMachineServiceImpl implements CoffeeMachineService {
 
     private final CoffeeMachineRepository coffeeMachineRepository;
-    private final CoffeeRepository coffeeRepository;
 
     @Override
     @Transactional
@@ -42,6 +42,7 @@ public class CoffeeMachineServiceImpl implements CoffeeMachineService {
     @Transactional
     public CoffeeMachineDto createCoffeeMachine(CoffeeMachineDto coffeeMachineDto) {
         CoffeeMachine coffeeMachine = toCoffeeMachine(coffeeMachineDto);
+        validationBodyCoffeeMachine(coffeeMachine);
         coffeeMachineRepository.save(coffeeMachine);
         return toCoffeeMachineDto(coffeeMachine);
     }
