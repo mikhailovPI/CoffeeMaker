@@ -1,6 +1,5 @@
 package ru.mikhailov.coffeemaker.coffeemachine.mapper;
 
-import ru.mikhailov.coffeemaker.coffee.model.Coffee;
 import ru.mikhailov.coffeemaker.coffeemachine.dto.CoffeeMachineDto;
 import ru.mikhailov.coffeemaker.coffeemachine.model.CoffeeMachine;
 
@@ -10,14 +9,12 @@ public class CoffeeMachineMapper {
         return new CoffeeMachine(
                 coffeeMachineDto.getId(),
                 coffeeMachineDto.getName(),
-                false,
-                coffeeMachineDto.getCoffee());
+                false);
     }
 
     public static CoffeeMachineDto toCoffeeMachineDto(CoffeeMachine coffeeMachine) {
         return new CoffeeMachineDto(
                 coffeeMachine.getId(),
-                coffeeMachine.getName(),
-                coffeeMachine.getCoffee());
+                coffeeMachine.getName());
     }
 }

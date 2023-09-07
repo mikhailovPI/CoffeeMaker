@@ -29,11 +29,4 @@ public class CoffeeMapper {
                 coffeeUpdateDto.getMilkVolume(),
                 coffeeUpdateDto.getCoffeeVolume());
     }
-
-    public static CoffeeUpdateDto toCoffeeUpdateDto(Coffee coffee) {
-        return new CoffeeUpdateDto(
-                coffee.getName(),
-                coffee.getMilkVolume(),
-                coffee.getCoffeeVolume());
-    }
 }

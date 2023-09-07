@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.mikhailov.coffeemaker.coffee.model.Coffee;
 import ru.mikhailov.coffeemaker.coffee.repository.CoffeeRepository;
 import ru.mikhailov.coffeemaker.coffeemachine.dto.CoffeeMachineDto;
 import ru.mikhailov.coffeemaker.coffeemachine.model.CoffeeMachine;
@@ -42,23 +41,6 @@ public class CoffeeMachineServiceImpl implements CoffeeMachineService {
     @Override
     @Transactional
     public CoffeeMachineDto createCoffeeMachine(CoffeeMachineDto coffeeMachineDto) {
-//        Coffee coffee = coffeeRepository.findById(coffeeMachineDto.getCoffee())
-//                .orElseThrow();
-        CoffeeMachine coffeeMachine = toCoffeeMachine(coffeeMachineDto);
-        //coffeeMachine.setCoffee(coffee);
-        coffeeMachineRepository.save(coffeeMachine);
-        return toCoffeeMachineDto(coffeeMachine);
-    }
-
-    @Override
-    @Transactional
-    public void makeCoffee(Long coffeeMachineId, Long coffeeId) {
-        CoffeeMachine coffeeMachine = getCoffeeMachine(coffeeMachineId);
-    }
-
-    @Override
-    @Transactional
-    public CoffeeMachineDto createMachine(CoffeeMachineDto coffeeMachineDto) {
         CoffeeMachine coffeeMachine = toCoffeeMachine(coffeeMachineDto);
         coffeeMachineRepository.save(coffeeMachine);
         return toCoffeeMachineDto(coffeeMachine);

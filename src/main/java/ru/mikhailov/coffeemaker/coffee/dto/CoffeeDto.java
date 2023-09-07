@@ -11,7 +11,7 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Schema(description = "Сущность кофе")
+@Schema(description = "Сущность типа кофе")
 public class CoffeeDto {
 
     @Schema(accessMode = Schema.AccessMode.READ_ONLY)

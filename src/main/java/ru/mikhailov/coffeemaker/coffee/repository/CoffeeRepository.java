@@ -12,8 +12,4 @@ public interface CoffeeRepository extends JpaRepository<Coffee, Long> {
 
     @Query("SELECT c FROM Coffee c WHERE LOWER(c.name) LIKE CONCAT('%', LOWER(:nameCoffee), '%')")
     List<Coffee> findCoffeeByName(@Param("nameCoffee") String nameCoffee, PageRequestOverride pageRequest);
-
-    @Query("SELECT c FROM Coffee c WHERE LOWER(c.name) LIKE CONCAT('%', LOWER(:nameCoffee), '%')")
-    Coffee findCoffeeByName(@Param("nameCoffee") String nameCoffee);
-
 }

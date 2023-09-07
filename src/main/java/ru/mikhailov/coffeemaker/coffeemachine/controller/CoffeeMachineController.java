@@ -12,7 +12,7 @@ import ru.mikhailov.coffeemaker.coffeemachine.service.CoffeeMachineService;
 @RequestMapping(path = CoffeeMachineController.URL_COFFEE_MACHINE)
 public class CoffeeMachineController {
 
-    public static final String URL_COFFEE_MACHINE = "/coffeemachine";
+    public static final String URL_COFFEE_MACHINE = "/coffee_machine";
 
     private final CoffeeMachineService coffeeMachineService;
 
@@ -29,22 +29,8 @@ public class CoffeeMachineController {
     }
 
     @PostMapping
-    public CoffeeMachineDto createCoffeeMachine (@RequestBody CoffeeMachineDto coffeeMachineDto){
+    public CoffeeMachineDto createMachine(@RequestBody CoffeeMachineDto coffeeMachineDto) {
         log.info("PostMapping/Создание кофемашины/createCoffeeMachine");
         return coffeeMachineService.createCoffeeMachine(coffeeMachineDto);
     }
-
-    @PostMapping(path = "/")
-    public CoffeeMachineDto createMachine (@RequestBody CoffeeMachineDto coffeeMachineDto){
-        log.info("PostMapping/Создание кофемашины/createCoffeeMachine");
-        return coffeeMachineService.createMachine(coffeeMachineDto);
-    }
-
-/*    @PostMapping(URL_COFFEE_MACHINE + "/{coffeeMachine_id}/make/{coffee_id}")
-    public void makeCoffee(
-            @PathVariable Long coffeeMachineId,
-            @PathVariable Long coffeeId) {
-        log.info("PostMapping/Приготовление кофе/makeCoffee");
-            coffeeMachineService.makeCoffee(coffeeMachineId, coffeeId);
-    }*/
 }
