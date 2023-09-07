@@ -8,7 +8,6 @@ import lombok.experimental.FieldDefaults;
 import ru.mikhailov.coffeemaker.coffee.model.Coffee;
 
 import javax.persistence.*;
-
 import java.util.List;
 
 import static ru.mikhailov.coffeemaker.coffee.model.Coffee.COFFEE_ID;
@@ -19,32 +18,33 @@ import static ru.mikhailov.coffeemaker.coffee.model.Coffee.COFFEE_ID;
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-@Table(name = CoffeeMachine.TABLE_COFFEEMACHINE, schema = Coffee.SCHEMA_TABLE)
+@Table(name = CoffeeMachine.TABLE_COFFEE_MACHINE, schema = Coffee.SCHEMA_TABLE)
 public class CoffeeMachine {
 
-    public static final String TABLE_COFFEEMACHINE = "coffeemacine";
+    public static final String TABLE_COFFEE_MACHINE = "coffee_machine";
     public static final String SCHEMA_TABLE = "public";
-    public static final String COFFEEMACHINE_ID = "coffeemachine_id";
-    public static final String COFFEEMACHINE_NAME = "coffeemachine_name";
-    public static final String COFFEEMACHINE_POWER = "power";
+    public static final String COFFEE_MACHINE_ID = "coffee_machine_id";
+    public static final String COFFEE_MACHINE_NAME = "coffee_machine_name";
+    public static final String COFFEE_MACHINE_POWER = "power";
+    public static final String COFFEE_MAKE = "coffee_make";
 
-/*    public CoffeeMachine(Coffee coffee) {
-        this.coffee = coffee;
-    }*/
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = COFFEEMACHINE_ID)
+    @Column(name = COFFEE_MACHINE_ID)
     Long id;
 
-    @Column(name = COFFEEMACHINE_NAME)
+    @Column(name = COFFEE_MACHINE_NAME)
     String name;
 
+    @Column(name = COFFEE_MACHINE_POWER)
+    Boolean power;
+
+//    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+//    @JoinTable(name = COFFEE_MAKE,
+//            joinColumns = @JoinColumn(name = COFFEE_MACHINE_ID),
+//            inverseJoinColumns = @JoinColumn(name = COFFEE_ID))
     @OneToMany
     @JoinColumn(name = COFFEE_ID)
     List<Coffee> coffee;
-
-    @Column(name = COFFEEMACHINE_POWER)
-    Boolean power;
-
 }

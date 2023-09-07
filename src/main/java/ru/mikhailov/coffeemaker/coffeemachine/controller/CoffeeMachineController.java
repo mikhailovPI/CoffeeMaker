@@ -2,58 +2,49 @@ package ru.mikhailov.coffeemaker.coffeemachine.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.mikhailov.coffeemaker.coffeemachine.dto.CoffeeMachineDto;
 import ru.mikhailov.coffeemaker.coffeemachine.service.CoffeeMachineService;
-import ru.mikhailov.coffeemaker.exception.NotFoundException;
 
 @RestController
 @Slf4j
 @RequiredArgsConstructor
-@RequestMapping(path = CoffeeMachineController.URL_COFFEEMACHINE)
+@RequestMapping(path = CoffeeMachineController.URL_COFFEE_MACHINE)
 public class CoffeeMachineController {
 
-    public static final String URL_COFFEEMACHINE = "/coffeem/";
+    public static final String URL_COFFEE_MACHINE = "/coffeemachine";
 
     private final CoffeeMachineService coffeeMachineService;
-/*    private final ToggleService toggleService;
 
-    @PostMapping(URL_COFFEEMACHINE + "/on")
-    public void turnOn(Boolean powerOn) {
+    @PatchMapping(path = "/{id}/on")
+    public void turnOn(@PathVariable Long id) {
         log.info("PostMapping/Включение кофемашины/turnOn");
-        toggleService.turnOn(powerOn);
+        coffeeMachineService.turnOn(id);
     }
 
-    @PostMapping(URL_COFFEEMACHINE + "/off")
-    public void turnOff(Boolean powerOn) {
+    @PatchMapping(path = "/{id}/off")
+    public void turnOff(@PathVariable Long id) {
         log.info("PostMapping/Выключение кофемашины/turnOff");
-        toggleService.turnOff(powerOn);
-    }*/
-
-/*    @PostMapping("/coffeemachine/make")
-    public void makeCoffee(
-            @RequestBody CoffeeMachineDto coffeeMachineDto
-            *//*@RequestParam(name = "nameCoffee", required = false) String nameCoffee*//*) {
-        //if (coffeeMachineDto.getPowerOn()) {
-            coffeeMachineService.makeCoffee(coffeeMachineDto);
-*//*        } else {
-            throw new NotFoundException(
-                    String.format("Кофеварка выключена. Включите кофеварку и получайте удовольствие от кофе!:)"));
-        }*//*
-    }*/
-
-    @PostMapping(URL_COFFEEMACHINE + "/make")
-    public void makeCoffee(
-            @RequestBody CoffeeMachineDto coffeeMachineDto) {
-        log.info("PostMapping/Приготовление кофе/makeCoffee");
-        if (true) {
-            coffeeMachineService.makeCoffee(coffeeMachineDto);
-        } else {
-            throw new NotFoundException(
-                    String.format("Кофеварка выключена. Включите кофеварку и получайте удовольствие от кофе!:)"));
-        }
+        coffeeMachineService.turnOff(id);
     }
+
+    @PostMapping
+    public CoffeeMachineDto createCoffeeMachine (@RequestBody CoffeeMachineDto coffeeMachineDto){
+        log.info("PostMapping/Создание кофемашины/createCoffeeMachine");
+        return coffeeMachineService.createCoffeeMachine(coffeeMachineDto);
+    }
+
+    @PostMapping(path = "/")
+    public CoffeeMachineDto createMachine (@RequestBody CoffeeMachineDto coffeeMachineDto){
+        log.info("PostMapping/Создание кофемашины/createCoffeeMachine");
+        return coffeeMachineService.createMachine(coffeeMachineDto);
+    }
+
+/*    @PostMapping(URL_COFFEE_MACHINE + "/{coffeeMachine_id}/make/{coffee_id}")
+    public void makeCoffee(
+            @PathVariable Long coffeeMachineId,
+            @PathVariable Long coffeeId) {
+        log.info("PostMapping/Приготовление кофе/makeCoffee");
+            coffeeMachineService.makeCoffee(coffeeMachineId, coffeeId);
+    }*/
 }

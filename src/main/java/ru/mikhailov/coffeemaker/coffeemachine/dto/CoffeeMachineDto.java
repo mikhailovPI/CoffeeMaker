@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import ru.mikhailov.coffeemaker.coffee.model.Coffee;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,16 +16,10 @@ import ru.mikhailov.coffeemaker.coffee.model.Coffee;
 public class CoffeeMachineDto {
 
     Long id;
-//    Boolean powerOn;
-    Coffee coffee;
 
-//    public void turnOn() {
-//        this.powerOn = true;
-//        System.out.println("Кофеварка включена. Выбирайте тип кофе для приготовления!:)");
-//    }
-//
-//    public void turnOff() {
-//        this.powerOn = false;
-//        System.out.println("Кофеварка выключена. Включите кофеварку и получайте удовольствие от кофе!:)");
-//    }
+    String name;
+
+    List<Coffee> coffee;
+
+    //Boolean power;
 }
