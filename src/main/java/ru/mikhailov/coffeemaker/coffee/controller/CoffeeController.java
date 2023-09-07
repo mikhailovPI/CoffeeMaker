@@ -19,7 +19,7 @@ import java.util.List;
 @Tag(name = "CoffeeController", description = "Позволяет работать с типами кофе")
 public class CoffeeController {
 
-    public static final String URL_COFFEE = "/coffeemaker";
+    public static final String URL_COFFEE = "/coffee";
     private final CoffeeService coffeeService;
 
     @GetMapping
@@ -34,20 +34,20 @@ public class CoffeeController {
         return coffeeService.getAllCoffee(from, size);
     }
 
+    @GetMapping(path = "/{id}")
     @Operation(
             summary = "Получение типа кофе",
             description = "Позволяет получить тип кофе по идентификатору")
-    @GetMapping(path = "/{id}")
     public CoffeeDto getCoffeeById(
             @PathVariable @Parameter(description = "Идентификатор типа кофе") Long id) {
         log.info("GetMapping/Получение типа кофе по id/getCoffeeById");
         return coffeeService.getCoffeeById(id);
     }
 
+    @GetMapping(path = "/name")
     @Operation(
             summary = "Поиск типа кофе",
             description = "Позволяет осуществить поиск типа кофе по названию")
-    @GetMapping(path = "/name")
     public List<CoffeeDto> searchCoffeeByName(
             @RequestParam(name = "nameCoffee", required = false)
             @Parameter(description = "Название/часть названия типа кофе") String nameCoffee,
@@ -58,19 +58,19 @@ public class CoffeeController {
         return coffeeService.searchCoffeeByName(nameCoffee, from, size);
     }
 
+    @PostMapping
     @Operation(
             summary = "Создание типа кофе",
             description = "Позволяет создать новый тип кофе")
-    @PostMapping
     public CoffeeDto createCoffee(@RequestBody @Parameter(description = "Объект типа кофе") CoffeeDto coffeeDto) {
         log.info("PostMapping/Создание нового типа кофе/createCoffee");
         return coffeeService.createCoffee(coffeeDto);
     }
 
+    @PatchMapping(path = "/{id}")
     @Operation(
             summary = "Обновление типа кофе",
             description = "Позволяет обновить существующий тип кофе")
-    @PatchMapping(path = "/{id}")
     public CoffeeDto patchCoffee(
             @PathVariable @Parameter(description = "Идентификатор типа кофе") Long id,
             @RequestBody @Parameter(description = "Обновленный тип кофе") CoffeeUpdateDto coffee) {
@@ -78,10 +78,10 @@ public class CoffeeController {
         return coffeeService.patchCoffee(id, coffee);
     }
 
+    @DeleteMapping(path = "/{id}")
     @Operation(
             summary = "Удаление типа кофе",
             description = "Позволяет удалить тип кофе по идентификатору")
-    @DeleteMapping(path = "/{id}")
     public void deleteCoffeeById(@PathVariable @Parameter(description = "Идентификатор типа кофе") Long id) {
         log.info("DeleteMapping/Удаление типа кофе по id/deleteCoffeeById");
         coffeeService.deleteCoffeeById(id);

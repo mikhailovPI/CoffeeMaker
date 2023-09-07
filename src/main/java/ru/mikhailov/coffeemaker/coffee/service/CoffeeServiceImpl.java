@@ -82,12 +82,27 @@ public class CoffeeServiceImpl implements CoffeeService {
         Coffee coffeeDataBase = coffeeRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException(
                         String.format("Данный кофе c id %s не существует!", id)));
-        if (!coffeeDataBase.getName().equalsIgnoreCase(coffee.getName())) {
-            coffeeDataBase.setName(coffee.getName());
-            return toCoffeeDto(coffeeRepository.save(coffeeDataBase));
+
+        if (coffeeDataBase.getName().equalsIgnoreCase(coffee.getName()) &&
+                coffeeDataBase.getMilkVolume().equals(coffee.getMilkVolume()) &&
+                coffeeDataBase.getCoffeeVolume().equals(coffee.getCoffeeVolume())) {
+            throw new ValidationException(String.format("Кофе с параметрами:" +
+                            "название - %s, объем молока - %s, объем кофе - %s уже существует." +
+                            " Проверьте правильность ввода данных!:)",
+                    coffeeDataBase.getName(),
+                    coffeeDataBase.getMilkVolume(),
+                    coffeeDataBase.getCoffeeVolume()));
         } else {
-            throw new ValidationException(String.format("Название кофе %s уже существует. Напишите новое название!:)",
-                    coffeeDataBase.getName()));
+            if (!coffeeDataBase.getName().equalsIgnoreCase(coffee.getName())) {
+                coffeeDataBase.setName(coffee.getName());
+            }
+            if (!coffeeDataBase.getMilkVolume().equals(coffee.getMilkVolume())) {
+                coffeeDataBase.setMilkVolume(coffee.getMilkVolume());
+            }
+            if (!coffeeDataBase.getCoffeeVolume().equals(coffee.getCoffeeVolume())) {
+                coffeeDataBase.setCoffeeVolume(coffee.getCoffeeVolume());
+            }
+            return toCoffeeDto(coffeeRepository.save(coffeeDataBase));
         }
     }
 

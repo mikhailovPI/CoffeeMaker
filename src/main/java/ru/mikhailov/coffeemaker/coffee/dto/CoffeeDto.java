@@ -19,4 +19,10 @@ public class CoffeeDto {
 
     @Schema(description = "Название типа кофе", example = "Моккачино")
     String name;
+
+    @Schema(description = "Объем молока", example = "250,0")
+    Double milkVolume;
+
+    @Schema(description = "Объем кофе", example = "250,0")
+    Double coffeeVolume;
 }
