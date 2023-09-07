@@ -27,6 +27,10 @@ public class CoffeeMake {
     public static final String COFFEE_MACHINE_ID = "coffee_machine_id";
     public static final String COFFEE_ID =  "coffee_id";
 
+    public CoffeeMake(CoffeeMachine coffeeMachine, Coffee coffee) {
+        this.coffeeMachine = coffeeMachine;
+        this.coffee = coffee;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,9 +44,4 @@ public class CoffeeMake {
     @OneToOne(optional = false)
     @JoinColumn(name = COFFEE_ID)
     Coffee coffee;
-
-    public CoffeeMake(CoffeeMachine coffeeMachine, Coffee coffee) {
-        this.coffeeMachine = coffeeMachine;
-        this.coffee = coffee;
-    }
 }

@@ -16,7 +16,7 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 @RequestMapping(path = CoffeeController.URL_COFFEE)
-@Tag(name = "CoffeeController", description = "Позволяет работать с типами кофе")
+@Tag(name = "CoffeeController", description = "Позволяет создавать типы кофе")
 public class CoffeeController {
 
     public static final String URL_COFFEE = "/coffee";
